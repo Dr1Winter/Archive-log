@@ -7,7 +7,7 @@ do
 case "$1" in
 -p) PATHTOLOGTAR="$2"
 shift;;
--o) OUTPUTHLOGTAR="2";;
+-o) OUTPUTHLOGTAR="$2";;
 esac
 shift 
 done
