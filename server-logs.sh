@@ -13,4 +13,4 @@ shift
 done
 sudo mkdir -p $OUTPUTHLOGTAR
 sudo tar -cvzf server-logs-"$NAME".tar.gz "$PATHTOLOGTAR"
-sudo mv server-logs-"$NAME".tar.gz /home/Server-logs
+sudo mv server-logs-"$NAME".tar.gz $OUTPUTHLOGTAR
