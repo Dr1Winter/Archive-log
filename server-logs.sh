@@ -23,9 +23,9 @@ exit 1;;
 esac 
 shift
 crontab -l > newcron
-echo "$ROPTIONS" "$CURENTDIR" >> newcron
-crontab newcron
-cat newcron
+grep "server-logs.sh" && echo "$ROPTIONS" "$CURENTDIR""/server-logs.sh" >> newcron
+crontab -u $USER newcron
+#cat newcron
 rm newcron
 echo "Timer sucsessfull installed"
 exit;;
