@@ -19,21 +19,26 @@ d | day) ROPTIONS="0 0 * * *";;
 mo | month) ROPTIONS="0 0 1 * *";;
 y | year) ROPTIONS="0 0 1 12 *";;
 *) echo "Invalyd syntax"
-break;;
+exit 1;;
 esac 
 shift
 crontab -l > newcron
-echo "$ROPTIONS" " " "$CURENTDIR" >> newcron
+echo "$ROPTIONS" "$CURENTDIR" >> newcron
 crontab newcron
-rm newcron;;
-*) echo "Invalyd syntax"
-break;;
+cat newcron
+rm newcron
+echo "Timer sucsessfull installed"
+exit;;
 -r | --reset-timer)
 crontab -l | sed '/server-logs.sh/d' > newcron
 crontab newcron
-rm newcron;;
+rm newcron
+echo "Timer sucsessfull removed"
+exit;;
+*) echo "Invalyd syntax"
+exit;;
 esac
 shift 
 done
-tar -cvzf server-logs-"$NAME".tar.gz "$PATHTOLOGTAR" > dev/null
+tar -cvzf server-logs-"$NAME".tar.gz "$PATHTOLOGTAR" #>&/dev/null
 mv server-logs-"$NAME".tar.gz $OUTPUTHLOGTAR
