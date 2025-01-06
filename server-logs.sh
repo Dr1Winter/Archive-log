@@ -23,8 +23,8 @@ exit 1;;
 esac 
 shift
 crontab -l > newcron
-grep "server-logs.sh" && echo "$ROPTIONS" "$CURENTDIR""/server-logs.sh" >> newcron
-crontab -u $USER newcron
+grep "server-logs.sh" newcron && echo "You already have a timer"|| echo "$ROPTIONS" "$CURENTDIR""/server-logs.sh" >> newcron
+crontab -u "$USER" newcron
 #cat newcron
 rm newcron
 echo "Timer sucsessfull installed"
@@ -36,7 +36,7 @@ rm newcron
 echo "Timer sucsessfull removed"
 exit;;
 *) echo "Invalyd syntax"
-exit;;
+exit 1;;
 esac
 shift 
 done
