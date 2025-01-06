@@ -7,7 +7,7 @@ mkdir -p $OUTPUTHLOGTAR
 while [ -n "$1" ]
 do 
 case "$1" in
--p | --path) PATHTOLOGTAR="$2"
+-d | --directory) PATHTOLOGTAR="$2"
 shift;;
 -o | --outputpath) OUTPUTHLOGTAR="$2"
 shift;;
@@ -22,13 +22,16 @@ y | year) ROPTIONS="0 0 1 12 *";;
 break;;
 esac 
 shift
-touch newcron
 crontab -l > newcron
 echo "$ROPTIONS" " " "$CURENTDIR" >> newcron
 crontab newcron
 rm newcron;;
 *) echo "Invalyd syntax"
 break;;
+-r | --reset-timer)
+crontab -l | sed '/server-logs.sh/d' > newcron
+crontab newcron
+rm newcron;;
 esac
 shift 
 done
