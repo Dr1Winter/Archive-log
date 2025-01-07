@@ -35,6 +35,9 @@ crontab newcron
 rm newcron
 echo "Timer sucsessfull removed"
 exit;;
+-i | --install) cp server-logs.sh /usr/local/bin/slog
+echo "Sucsessfull instaled"
+exit;;
 *) echo "Invalyd syntax"
 exit 1;;
 esac
